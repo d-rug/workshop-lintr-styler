@@ -4,16 +4,16 @@ project:
 
 book:
   title: "YOUR WORKSHOP TITLE"
-  author: "[YOUR NAME]"
-  date: "DATE"
+  author: "Wesley Brooks"
+  date: "`r Sys.Date()`"
   
   search: true
-  repo-url: https://github.com/d-rug/YOUR_REPO
+  repo-url: https://github.com/d-rug/workshop-lintr-styler
   downloads: [pdf]
   chapters:
     - index.qmd
     - 01_intro.qmd
-    - 02_example.qmd
+    - 02_why-style-matters.qmd
   
   sidebar:
     logo: https://github.com/d-rug/d-rug.github.io/raw/main/DRUG_final_cobalt.png

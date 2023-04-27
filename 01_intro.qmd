@@ -1,7 +1,12 @@
 ---
 title: "Introduction"
 format: html
+
 ---
+
+This mini-workshop aims to convince you that you should write code with a style in mind, and to show you what tools are available to help with that.
+
+
 
 ## Quarto
 
