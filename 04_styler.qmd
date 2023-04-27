@@ -10,7 +10,7 @@ While `lintr` identifies code lint, [`styler` automatically cleans it up](https:
 Now lets look at how `styler` handles our crappy R script from the `lintr` example.
 
 ```{r}
-#|eval: false
+#| eval: false
 # 
 items = c( "apple", "pear", "candy" )
 sapply( items, nchar )
