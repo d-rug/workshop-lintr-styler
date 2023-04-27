@@ -32,7 +32,7 @@
     "href": "03_lintr.html#examples",
     "title": "Linting With lintr",
     "section": "Examples",
-    "text": "Examples\nNow lets look at a few examples of linting R scripts.\n\n\nLoading webR…"
+    "text": "Examples\nNow lets look at a few examples of linting R scripts. I’ll write a short script with a few style errors to show what lintr says about them.\n\n# \nitems = c( \"apple\", \"pear\", \"candy\" )\nsapply( items, nchar )\n# lapply( items, nchar )\n\ntotalChars = 0\nfor (i in 1:length(items)) { totalChars = totalchars + nchar(items[[i]]); print(nchar(items[[i]]))}"
   },
   {
     "objectID": "03_lintr.html#limitations",
@@ -46,34 +46,20 @@
     "href": "03_lintr.html#defaults-and-customization",
     "title": "Linting With lintr",
     "section": "Defaults and customization",
-    "text": "Defaults and customization\nBy default, lintr tests for the elements of the tidyverse style guide. However, you may customize its operation, generally in any of three ways:\n\nYou may select"
-  },
-  {
-    "objectID": "04_styler.html#the-lintr-package",
-    "href": "04_styler.html#the-lintr-package",
-    "title": "Linting With lintr",
-    "section": "The lintr package",
-    "text": "The lintr package\nLinting can be automated (to a point), and the lintr package fulfills that promise for R scripts. My recommendation is to use lintr through its RStudio integration. Once the package is installed, you only need to find the “Lint current file” option from the “Addins” menu to get a list of all the code lint in your script.\n\n\n\nFigure 5.1: Using RStudio lintr integration"
+    "text": "Defaults and customization\nBy default, lintr tests for the elements of the tidyverse style guide. However, you may customize its operation, generally in either of two ways:\n\nYou may select from an extensive list of pre-defined linters (View( available_linters())), or\nYou may define your own linters (advanced)\n\nBoth of these are beyond the scope of today’s mini-workshop. I recommend beginning with the defaults and the RStudio integration."
   },
   {
     "objectID": "04_styler.html#examples",
     "href": "04_styler.html#examples",
-    "title": "Linting With lintr",
+    "title": "Clean up lint with styler",
     "section": "Examples",
-    "text": "Examples\nNow lets look at a few examples of linting R scripts.\n\n\nLoading webR…"
+    "text": "Examples\nNow lets look at how styler handles our crappy R script from the lintr example.\n\n# \nitems = c( \"apple\", \"pear\", \"candy\" )\nsapply( items, nchar )\n# lapply( items, nchar )\n\ntotalChars = 0\nfor (i in 1:length(items)) { totalChars = totalchars + nchar(items[[i]]); print(nchar(items[[i]]))}\n\nbecomes\n\n#\nitems <- c(\"apple\", \"pear\", \"candy\")\nsapply(items, nchar)\n# lapply( items, nchar )\n\ntotalChars <- 0\nfor (i in 1:length(items)) {\n  totalChars <- totalchars + nchar(items[[i]])\n  print(nchar(items[[i]]))\n}\n\nyou can see that styler has not fixed all of the code lint: the lapply() call is still commented out, 1:length(items) has not been changed to seq_along(items), and object names weren’t changed. You can change default settings but for starters I recommend running lintr again after styler to see what lint remains."
   },
   {
-    "objectID": "04_styler.html#limitations",
-    "href": "04_styler.html#limitations",
-    "title": "Linting With lintr",
-    "section": "Limitations",
-    "text": "Limitations\nThere is no magic to how lintr works - it recognizes pre-defined patterns in the code and tells you about them. This leaves out the elements of code style that can’t be written into an obvious pattern. For instance, lintr will tell you that you’ve used comments to remove unused code (a pattern commonly used to test alternatives while coding but which hurts maintainability because later you may forget whether the version in the code or in the comments works better.) But lintr won’t tell you when your comments are ambiguous, contradict the code, or are unhelpful."
-  },
-  {
-    "objectID": "04_styler.html#defaults-and-customization",
-    "href": "04_styler.html#defaults-and-customization",
-    "title": "Linting With lintr",
-    "section": "Defaults and customization",
-    "text": "Defaults and customization\nBy default, lintr tests for the elements of the tidyverse style guide. However, you may customize its operation, generally in any of three ways:\n\nYou may select"
+    "objectID": "04_styler.html#conclusion",
+    "href": "04_styler.html#conclusion",
+    "title": "Clean up lint with styler",
+    "section": "Conclusion",
+    "text": "Conclusion\nLike lintr, styler can’t make your code work. It can, however, make it more readable and therefore maintainable. The extremely convenient RStudio integrations mean that there’s really no reason to not use these packages."
   }
 ]

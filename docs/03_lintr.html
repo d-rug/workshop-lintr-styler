@@ -20,6 +20,69 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -122,7 +185,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./04_styler.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Linting With <code>lintr</code></span></a>
+  <a href="./04_styler.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Clean up lint with <code>styler</code></span></a>
   </div>
 </li>
     </ul>
@@ -161,34 +224,6 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/codemirror.min.css">
-<style>
-  .CodeMirror pre {
-    background-color: unset !important;
-  }
-  .btn-webr {
-    background-color: #EEEEEE;
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
-  }
-</style>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/codemirror.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/mode/r/r.js"></script>
-<script type="module">
-  import { WebR } from "https://webr.r-wasm.org/v0.1.0/webr.mjs";
-  globalThis.webR = new WebR({
-    SW_URL: "/"
-  });
-  await globalThis.webR.init();
-  globalThis.webRCodeShelter = await new globalThis.webR.Shelter();
-  document.querySelectorAll(".btn-webr").forEach((btn) => {
-    btn.innerText = "Run code";
-    btn.disabled = false;
-  });
-</script>
-<div class="cell">
-
-</div>
 <p>Now we’ll look at the first of our packages for controlling code style: <a href="https://lintr.r-lib.org"><code>lintr</code></a>. Code lint is a name for small flaws that spoil the overall style of a script. “Linting” is the term for seeking out and identifying code lint in your scripts.</p>
 <section id="the-lintr-package" class="level2">
 <h2 class="anchored" data-anchor-id="the-lintr-package">The <code>lintr</code> package</h2>
@@ -202,92 +237,15 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="examples" class="level2">
 <h2 class="anchored" data-anchor-id="examples">Examples</h2>
-<p>Now lets look at a few examples of linting R scripts.</p>
+<p>Now lets look at a few examples of linting R scripts. I’ll write a short script with a few style errors to show what <code>lintr</code> says about them.</p>
 <div class="cell">
-<button class="btn btn-default btn-webr" disabled="" type="button" id="webr-run-button-1">
-Loading webR…
-</button>
-<div id="webr-editor-1">
-
-</div>
-<div id="webr-code-output-1">
-<pre style="visibility: hidden"></pre>
-</div>
-<script type="module">
-  const runButton = document.getElementById("webr-run-button-1");
-  const outputDiv = document.getElementById("webr-code-output-1");
-  const editorDiv = document.getElementById("webr-editor-1");
-
-  const editor = CodeMirror((elt) => {
-    elt.style.border = "1px solid #eee";
-    elt.style.height = "auto";
-    editorDiv.append(elt);
-  },{
-    value: `print("huh?")`,
-    lineNumbers: true,
-    mode: "r",
-    theme: "light default",
-    viewportMargin: Infinity,
-  });
-
-  runButton.onclick = async () => {
-    runButton.disabled = true;
-    let canvas = undefined;
-    await globalThis.webR.init();
-    await webR.evalRVoid("canvas(width=504, height=360)");
-    const result = await webRCodeShelter.captureR(editor.getValue(), {
-      withAutoprint: true,
-      captureStreams: true,
-      captureConditions: false,
-      env: webR.objs.emptyEnv,
-    });
-    try {
-      await webR.evalRVoid("dev.off()");
-      const out = result.output.filter(
-        evt => evt.type == "stdout" || evt.type == "stderr"
-      ).map((evt) => evt.data).join("\n");
-
-      const msgs = await webR.flush();
-      msgs.forEach(msg => {
-        if (msg.type === "canvasExec"){
-          if (!canvas) {
-            canvas = document.createElement("canvas");
-            canvas.setAttribute("width", 2 * 504);
-            canvas.setAttribute("height", 2 * 360);
-            canvas.style.width="700px";
-            canvas.style.display="block";
-            canvas.style.margin="auto";
-          }
-          Function(`this.getContext("2d").${msg.data}`).bind(canvas)();
-        }
-      });
-
-      outputDiv.innerHTML = "";
-      const pre = document.createElement("pre");
-      if (/\S/.test(out)) {
-        const code = document.createElement("code");
-        code.innerText = out;
-        pre.appendChild(code);
-      } else {
-        pre.style.visibility = "hidden";
-      }
-      outputDiv.appendChild(pre);
-
-      if (canvas) {
-        const p = document.createElement("p");
-        p.appendChild(canvas);
-        outputDiv.appendChild(p);
-      }
-    } finally {
-      webRCodeShelter.purge();
-      runButton.disabled = false;
-    }
-  }
-
-  await globalThis.webR.init();
-  runButton.innerText = "Run code";
-  runButton.disabled = false;
-</script>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>items <span class="ot">=</span> <span class="fu">c</span>( <span class="st">"apple"</span>, <span class="st">"pear"</span>, <span class="st">"candy"</span> )</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sapply</span>( items, nchar )</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># lapply( items, nchar )</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>totalChars <span class="ot">=</span> <span class="dv">0</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(items)) { totalChars <span class="ot">=</span> totalchars <span class="sc">+</span> <span class="fu">nchar</span>(items[[i]]); <span class="fu">print</span>(<span class="fu">nchar</span>(items[[i]]))}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="limitations" class="level2">
@@ -296,10 +254,12 @@ Loading webR…
 </section>
 <section id="defaults-and-customization" class="level2">
 <h2 class="anchored" data-anchor-id="defaults-and-customization">Defaults and customization</h2>
-<p>By default, <code>lintr</code> tests for the elements of <a href="https://style.tidyverse.org/">the <code>tidyverse</code> style guide</a>. However, you may customize its operation, generally in any of three ways:</p>
+<p>By default, <code>lintr</code> tests for the elements of <a href="https://style.tidyverse.org/">the <code>tidyverse</code> style guide</a>. However, you may customize its operation, generally in either of two ways:</p>
 <ol type="1">
-<li>You may select</li>
+<li>You may select from an extensive list of pre-defined linters (<code>View( available_linters())</code>), or</li>
+<li>You may <a href="https://lintr.r-lib.org/articles/creating_linters.html">define your own linters</a> (advanced)</li>
 </ol>
+<p>Both of these are beyond the scope of today’s mini-workshop. I recommend beginning with the defaults and the RStudio integration.</p>
 
 
 </section>
@@ -446,7 +406,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
   <div class="nav-page nav-page-next">
       <a href="./04_styler.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-title">Linting With <code>lintr</code></span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-title">Clean up lint with <code>styler</code></span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
