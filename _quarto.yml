@@ -2,6 +2,8 @@ project:
   type: book
   output-dir: docs
 
+filter: webr
+
 book:
   title: "YOUR WORKSHOP TITLE"
   author: "Wesley Brooks"
@@ -14,6 +16,8 @@ book:
     - index.qmd
     - 01_intro.qmd
     - 02_why-style-matters.qmd
+    - 03_lintr.qmd
+    - 04_styler.qmd
   
   sidebar:
     logo: https://github.com/d-rug/d-rug.github.io/raw/main/DRUG_final_cobalt.png

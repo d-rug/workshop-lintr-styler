@@ -30,6 +30,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<link href="./03_lintr.html" rel="next">
 <link href="./01_intro.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -114,6 +115,16 @@ ul.task-list li input[type="checkbox"] {
   <a href="./02_why-style-matters.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Why care about code style?</span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03_lintr.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Linting With <code>lintr</code></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04_styler.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Linting With <code>lintr</code></span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -154,6 +165,7 @@ ul.task-list li input[type="checkbox"] {
 <blockquote class="blockquote">
 <p>Code quality is often related to technical debt. Technical Debt (TD) is a metaphor used to reflect the implied cost of additional rework caused by choosing an easy solution in the present, instead of using a better approach that would take longer (Samarthyam et al., 2017).</p>
 </blockquote>
+<p>Two things to note: first, technical debt matters because it imposes future costs that could have been avoided in the first place. While you are hacking away in R, you will often write code that isn’t for reuse and in those cases you may follow whatever patterns you like. However, it isn’t uncommon when working like this that you will hit upon a solution that you want to save in a script for later, and then you will need to re-write your clever solution in proper R style. Second, code style is only a part of code quality. Knowing how to make your code work is always the most important consideration. Unfortunately (unlike code stlye), there isn’t a way to download that knowledge as an R package.</p>
 
 
 </section>
@@ -299,6 +311,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="./03_lintr.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-title">Linting With <code>lintr</code></span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->

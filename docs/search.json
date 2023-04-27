@@ -25,6 +25,62 @@
     "href": "02_why-style-matters.html#technical-debt",
     "title": "Why care about code style?",
     "section": "Technical debt",
-    "text": "Technical debt\nSome of us will recall discussing a series of papers in the R Journal about the need for software engineering best practices in R programming. The lead paper in the series cited technical debt as the cost of eschewing best practices in R code, and defined technical debt like this:\n\nCode quality is often related to technical debt. Technical Debt (TD) is a metaphor used to reflect the implied cost of additional rework caused by choosing an easy solution in the present, instead of using a better approach that would take longer (Samarthyam et al., 2017)."
+    "text": "Technical debt\nSome of us will recall discussing a series of papers in the R Journal about the need for software engineering best practices in R programming. The lead paper in the series cited technical debt as the cost of eschewing best practices in R code, and defined technical debt like this:\n\nCode quality is often related to technical debt. Technical Debt (TD) is a metaphor used to reflect the implied cost of additional rework caused by choosing an easy solution in the present, instead of using a better approach that would take longer (Samarthyam et al., 2017).\n\nTwo things to note: first, technical debt matters because it imposes future costs that could have been avoided in the first place. While you are hacking away in R, you will often write code that isn’t for reuse and in those cases you may follow whatever patterns you like. However, it isn’t uncommon when working like this that you will hit upon a solution that you want to save in a script for later, and then you will need to re-write your clever solution in proper R style. Second, code style is only a part of code quality. Knowing how to make your code work is always the most important consideration. Unfortunately (unlike code stlye), there isn’t a way to download that knowledge as an R package."
+  },
+  {
+    "objectID": "03_lintr.html#the-lintr-package",
+    "href": "03_lintr.html#the-lintr-package",
+    "title": "Linting With lintr",
+    "section": "The lintr package",
+    "text": "The lintr package\nLinting can be automated (to a point), and the lintr package fulfills that promise for R scripts. My recommendation is to use lintr through its RStudio integration. Once the package is installed, you only need to find the “Lint current file” option from the “Addins” menu to get a list of all the code lint in your script.\n\n\n\nFigure 4.1: Using RStudio lintr integration"
+  },
+  {
+    "objectID": "03_lintr.html#examples",
+    "href": "03_lintr.html#examples",
+    "title": "Linting With lintr",
+    "section": "Examples",
+    "text": "Examples\nNow lets look at a few examples of linting R scripts.\n\n\nLoading webR…"
+  },
+  {
+    "objectID": "03_lintr.html#limitations",
+    "href": "03_lintr.html#limitations",
+    "title": "Linting With lintr",
+    "section": "Limitations",
+    "text": "Limitations\nThere is no magic to how lintr works - it recognizes pre-defined patterns in the code and tells you about them. This leaves out the elements of code style that can’t be written into an obvious pattern. For instance, lintr will tell you that you’ve used comments to remove unused code (a pattern commonly used to test alternatives while coding but which hurts maintainability because later you may forget whether the version in the code or in the comments works better.) But lintr won’t tell you when your comments are ambiguous, contradict the code, or are unhelpful."
+  },
+  {
+    "objectID": "03_lintr.html#defaults-and-customization",
+    "href": "03_lintr.html#defaults-and-customization",
+    "title": "Linting With lintr",
+    "section": "Defaults and customization",
+    "text": "Defaults and customization\nBy default, lintr tests for the elements of the tidyverse style guide. However, you may customize its operation, generally in any of three ways:\n\nYou may select"
+  },
+  {
+    "objectID": "04_styler.html#the-lintr-package",
+    "href": "04_styler.html#the-lintr-package",
+    "title": "Linting With lintr",
+    "section": "The lintr package",
+    "text": "The lintr package\nLinting can be automated (to a point), and the lintr package fulfills that promise for R scripts. My recommendation is to use lintr through its RStudio integration. Once the package is installed, you only need to find the “Lint current file” option from the “Addins” menu to get a list of all the code lint in your script.\n\n\n\nFigure 5.1: Using RStudio lintr integration"
+  },
+  {
+    "objectID": "04_styler.html#examples",
+    "href": "04_styler.html#examples",
+    "title": "Linting With lintr",
+    "section": "Examples",
+    "text": "Examples\nNow lets look at a few examples of linting R scripts.\n\n\nLoading webR…"
+  },
+  {
+    "objectID": "04_styler.html#limitations",
+    "href": "04_styler.html#limitations",
+    "title": "Linting With lintr",
+    "section": "Limitations",
+    "text": "Limitations\nThere is no magic to how lintr works - it recognizes pre-defined patterns in the code and tells you about them. This leaves out the elements of code style that can’t be written into an obvious pattern. For instance, lintr will tell you that you’ve used comments to remove unused code (a pattern commonly used to test alternatives while coding but which hurts maintainability because later you may forget whether the version in the code or in the comments works better.) But lintr won’t tell you when your comments are ambiguous, contradict the code, or are unhelpful."
+  },
+  {
+    "objectID": "04_styler.html#defaults-and-customization",
+    "href": "04_styler.html#defaults-and-customization",
+    "title": "Linting With lintr",
+    "section": "Defaults and customization",
+    "text": "Defaults and customization\nBy default, lintr tests for the elements of the tidyverse style guide. However, you may customize its operation, generally in any of three ways:\n\nYou may select"
   }
 ]
