@@ -36,7 +36,7 @@ for (i in 1:length(items)) {
 }
 ```
 
-you can see that `styler` has not fixed all of the code lint: the `lapply()` call is still commented out and `1:length(items)` has not been changed to `seq_along(items)`. You can change default settings but for starters I recommend running `lintr` again after `styler` to see what lint remains.
+you can see that `styler` has not fixed all of the code lint: the `lapply()` call is still commented out, `1:length(items)` has not been changed to `seq_along(items)`, and object names weren't changed. You can change default settings but for starters I recommend running `lintr` again after `styler` to see what lint remains.
 
 ## Conclusion
 Like `lintr`, `styler` can't make your code work. It can, however, make it more readable and therefore maintainable. The extremely convenient RStudio integrations mean that there's really no reason to not use these packages.
