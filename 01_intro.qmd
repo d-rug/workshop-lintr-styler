@@ -6,25 +6,5 @@ format: html
 
 This mini-workshop aims to convince you that you should write code with a style in mind, and to show you what tools are available to help with that.
 
-
-
-## Quarto
-
-Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
-
-## Running Code
-
-When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
-
-```{r}
-1 + 1
-```
-
-You can add options to executable code like this 
-
-```{r}
-#| echo: false
-2 * 2
-```
-
-The `echo: false` option disables the printing of code (only output is displayed).
+## R style guides
+There are numerous R style guides, but only two are widely used: [the `tidyverse` style guide](https://style.tidyverse.org/index.html), and [the Google R style guide](https://google.github.io/styleguide/Rguide.html). In fact, the Google style guide is just the `tidyverse` guide with a few small adjustments. You don't have to adopt either style completely - you don't have to do *anything* - but I recommend adopting `tidyverse` style except in cases where you have a specific reason not to (e.g., I like to use `=` for assignment because it is more intuitive for folks coming from Python or most other programming languages).
