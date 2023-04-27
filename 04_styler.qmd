@@ -1,148 +1,42 @@
 ---
-title: Linting With `lintr`
+title: Clean up lint with `styler`
 ---
-```{=html}
-<script type="module">
-  import { WebR } from "https://webr.r-wasm.org/v0.1.0/webr.mjs";
-  globalThis.webR = new WebR({
-    SW_URL: "/"
-  });
-  await globalThis.webR.init();
-  globalThis.webRCodeShelter = await new globalThis.webR.Shelter();
-  document.querySelectorAll(".btn-webr").forEach((btn) => {
-    btn.innerText = "Run code";
-    btn.disabled = false;
-  });
-</script>
-```
 
-```{r}
-#| results: asis
-#| echo: false
-webr_counter = 0
+While `lintr` identifies code lint, [`styler` automatically cleans it up](https://styler.r-lib.org/index.html). Like `lintr`, `styler` integrates with RStudio so the best way to style a script is to select "Style active file" from the "Addins" menu.
 
-cat("importScripts('https://webr.r-wasm.org/v0.1.0/webr-worker.js');", file = "webr-worker.js")
-cat("importScripts('https://webr.r-wasm.org/v0.1.0/webr-serviceworker.js');", file = "webr-serviceworker.js")
-
-webr_editor = function(code = I(encodeString(code, quote = '`')), width, height) { 
-webr_counter <<- webr_counter + 1
-
-output = glue::glue('
-<button class="btn btn-default btn-webr" disabled type="button"  id="webr-run-button-{{ webr_counter }}">Loading webR...</button>
-<div id="webr-editor-{{ webr_counter }}"></div>
-<div id="webr-code-output-{{ webr_counter }}"><pre style="visibility: hidden"></pre></div>
-<script type="module">
-  const runButton = document.getElementById("webr-run-button-{{ webr_counter }}");
-  const outputDiv = document.getElementById("webr-code-output-{{ webr_counter }}");
-  const editorDiv = document.getElementById("webr-editor-{{ webr_counter }}");
-
-  const editor = CodeMirror((elt) => {
-    elt.style.border = "1px solid #eee";
-    elt.style.height = "auto";
-    editorDiv.append(elt);
-  },{
-    value: {{code}},
-    lineNumbers: true,
-    mode: "r",
-    theme: "light default",
-    viewportMargin: Infinity,
-  });
-
-  runButton.onclick = async () => {
-    runButton.disabled = true;
-    let canvas = undefined;
-    await globalThis.webR.init();
-    await webR.evalRVoid("canvas(width={{width}}, height={{height}})");
-    const result = await webRCodeShelter.captureR(editor.getValue(), {
-      withAutoprint: true,
-      captureStreams: true,
-      captureConditions: false,
-      env: webR.objs.emptyEnv,
-    });
-    try {
-      await webR.evalRVoid("dev.off()");
-      const out = result.output.filter(
-        evt => evt.type == "stdout" || evt.type == "stderr"
-      ).map((evt) => evt.data).join("\\n");
-
-      const msgs = await webR.flush();
-      msgs.forEach(msg => {
-        if (msg.type === "canvasExec"){
-          if (!canvas) {
-            canvas = document.createElement("canvas");
-            canvas.setAttribute("width", 2 * {{width}});
-            canvas.setAttribute("height", 2 * {{height}});
-            canvas.style.width="700px";
-            canvas.style.display="block";
-            canvas.style.margin="auto";
-          }
-          Function(`this.getContext("2d").${msg.data}`).bind(canvas)();
-        }
-      });
-
-      outputDiv.innerHTML = "";
-      const pre = document.createElement("pre");
-      if (/\\S/.test(out)) {
-        const code = document.createElement("code");
-        code.innerText = out;
-        pre.appendChild(code);
-      } else {
-        pre.style.visibility = "hidden";
-      }
-      outputDiv.appendChild(pre);
-
-      if (canvas) {
-        const p = document.createElement("p");
-        p.appendChild(canvas);
-        outputDiv.appendChild(p);
-      }
-    } finally {
-      webRCodeShelter.purge();
-      runButton.disabled = false;
-    }
-  }
-
-  await globalThis.webR.init();
-  runButton.innerText = "Run code";
-  runButton.disabled = false;
-</script>
-', .open = "{{", .close = "}}")
-}
-```
-
-```{r}
-#| echo: false
-knitr::knit_engines$set(webr = function(options) {
-  code = paste(options$code, collapse = "\n")
-  w = knitr::opts_current$get('fig.width') * 72
-  h = knitr::opts_current$get('fig.height') * 72
-  options$results = 'asis'
-  
-  form = webr_editor(code = I(encodeString(code, quote = '`')), width = w, height = h)
-  
-  form
-}
-)
-```
-
-Now we'll look at the first of our packages for controlling code style: [`lintr`](https://lintr.r-lib.org). Code lint is a name for small flaws that spoil the overall style of a script. "Linting" is the term for seeking out and identifying code lint in your scripts.
-
-## The `lintr` package
-Linting can be automated (to a point), and the `lintr` package fulfills that promise for R scripts. My recommendation is to use `lintr` through its RStudio integration. Once the package is installed, you only need to find the "Lint current file" option from the "Addins" menu to get a list of all the code lint in your script.
-
-![Using RStudio `lintr` integration](img/ex-lintr.png){#fig-litr fig-alt="screenshot showing where to find the lintr interation in RStudio"}
+![Using RStudio `styler` integration](img/ex-styler.png){#fig-styler fig-alt="screenshot showing how to use the styler interation in RStudio"}
 
 ## Examples
-Now lets look at a few examples of linting R scripts.
+Now lets look at how `styler` handles our crappy R script from the `lintr` example.
 
-```{webr}
-print("huh?")
+```{r}
+#|eval: false
+# 
+items = c( "apple", "pear", "candy" )
+sapply( items, nchar )
+# lapply( items, nchar )
+
+totalChars = 0
+for (i in 1:length(items)) { totalChars = totalchars + nchar(items[[i]]); print(nchar(items[[i]]))}
 ```
 
-## Limitations
-There is no magic to how `lintr` works - it recognizes pre-defined patterns in the code and tells you about them. This leaves out the elements of code style that can't be written into an obvious pattern. For instance, `lintr` will tell you that you've used comments to remove unused code (a pattern commonly used to test alternatives while coding but which hurts maintainability because later you may forget whether the version in the code or in the comments works better.) But `lintr` won't tell you when your comments are ambiguous, contradict the code, or are unhelpful. 
+becomes
 
-## Defaults and customization 
-By default, `lintr` tests for the elements of [the `tidyverse` style guide](https://style.tidyverse.org/). However, you may customize its operation, generally in any of three ways: 
- 
-  1. You may select 
+```{r}
+#| eval: false
+#
+items <- c("apple", "pear", "candy")
+sapply(items, nchar)
+# lapply( items, nchar )
+
+totalChars <- 0
+for (i in 1:length(items)) {
+  totalChars <- totalchars + nchar(items[[i]])
+  print(nchar(items[[i]]))
+}
+```
+
+you can see that `styler` has not fixed all of the code lint: the `lapply()` call is still commented out and `1:length(items)` has not been changed to `seq_along(items)`. You can change default settings but for starters I recommend running `lintr` again after `styler` to see what lint remains.
+
+## Conclusion
+Like `lintr`, `styler` can't make your code work. It can, however, make it more readable and therefore maintainable. The extremely convenient RStudio integrations mean that there's really no reason to not use these packages.
