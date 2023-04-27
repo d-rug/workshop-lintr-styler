@@ -2,30 +2,23 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "YOUR WORKSHOP TITLE",
+    "title": "R code style with the lintr and styler packages",
     "section": "",
     "text": "Overview\nYOUR DESCRIPTION, LEARNING GOALS, PREREQUISITES, ETC"
   },
   {
-    "objectID": "01_intro.html#quarto",
-    "href": "01_intro.html#quarto",
+    "objectID": "01_intro.html#r-style-guides",
+    "href": "01_intro.html#r-style-guides",
     "title": "Introduction",
-    "section": "Quarto",
-    "text": "Quarto\nQuarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see https://quarto.org."
-  },
-  {
-    "objectID": "01_intro.html#running-code",
-    "href": "01_intro.html#running-code",
-    "title": "Introduction",
-    "section": "Running Code",
-    "text": "Running Code\nWhen you click the Render button a document will be generated that includes both content and the output of embedded code. You can embed code like this:\n\n1 + 1\n\n[1] 2\n\n\nYou can add options to executable code like this\n\n\n[1] 4\n\n\nThe echo: false option disables the printing of code (only output is displayed)."
+    "section": "R style guides",
+    "text": "R style guides\nThere are numerous R style guides, but only two are widely used: the tidyverse style guide, and the Google R style guide. In fact, the Google style guide is just the tidyverse guide with a few small adjustments. You don’t have to adopt either style completely - you don’t have to do anything - but I recommend adopting tidyverse style except in cases where you have a specific reason not to (e.g., I like to use = for assignment because it is more intuitive for folks coming from Python or most other programming languages)."
   },
   {
     "objectID": "02_why-style-matters.html#technical-debt",
     "href": "02_why-style-matters.html#technical-debt",
     "title": "Why care about code style?",
     "section": "Technical debt",
-    "text": "Technical debt\nSome of us will recall discussing a series of papers in the R Journal about the need for software engineering best practices in R programming. The lead paper in the series cited technical debt as the cost of eschewing best practices in R code, and defined technical debt like this:\n\nCode quality is often related to technical debt. Technical Debt (TD) is a metaphor used to reflect the implied cost of additional rework caused by choosing an easy solution in the present, instead of using a better approach that would take longer (Samarthyam et al., 2017).\n\nTwo things to note: first, technical debt matters because it imposes future costs that could have been avoided in the first place. While you are hacking away in R, you will often write code that isn’t for reuse and in those cases you may follow whatever patterns you like. However, it isn’t uncommon when working like this that you will hit upon a solution that you want to save in a script for later, and then you will need to re-write your clever solution in proper R style. Second, code style is only a part of code quality. Knowing how to make your code work is always the most important consideration. Unfortunately (unlike code stlye), there isn’t a way to download that knowledge as an R package."
+    "text": "Technical debt\nSome of us will recall discussing a series of papers in the R Journal about the need for software engineering best practices in R programming. The lead paper in the series cited technical debt as the cost of eschewing best practices in R code, and defined technical debt like this:\n\nCode quality is often related to technical debt. Technical Debt (TD) is a metaphor used to reflect the implied cost of additional rework caused by choosing an easy solution in the present, instead of using a better approach that would take longer (Samarthyam et al., 2017).\n\nTwo things to note: first, technical debt matters because it imposes future costs that could have been avoided in the first place. While you are hacking away in R, you will often write code that isn’t for reuse and in those cases you may follow whatever patterns you like. However, it isn’t uncommon when working like this that you will hit upon a solution that you want to save in a script for later, and then you will need to re-write your clever solution in proper R style. Second, code style is only a part of code quality. Knowing how to make your code work is always the most important consideration. Unfortunately (unlike code style), there isn’t a way to download that knowledge as an R package."
   },
   {
     "objectID": "03_lintr.html#the-lintr-package",
