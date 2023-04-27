@@ -21,17 +21,10 @@
     "text": "Running Code\nWhen you click the Render button a document will be generated that includes both content and the output of embedded code. You can embed code like this:\n\n1 + 1\n\n[1] 2\n\n\nYou can add options to executable code like this\n\n\n[1] 4\n\n\nThe echo: false option disables the printing of code (only output is displayed)."
   },
   {
-    "objectID": "02_example.html#quarto",
-    "href": "02_example.html#quarto",
-    "title": "Example",
-    "section": "Quarto",
-    "text": "Quarto\nQuarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see https://quarto.org."
-  },
-  {
-    "objectID": "02_example.html#running-code",
-    "href": "02_example.html#running-code",
-    "title": "Example",
-    "section": "Running Code",
-    "text": "Running Code\nWhen you click the Render button a document will be generated that includes both content and the output of embedded code. You can embed code like this:\n\n1 + 1\n\n[1] 2\n\n\nYou can add options to executable code like this\n\n\n[1] 4\n\n\nThe echo: false option disables the printing of code (only output is displayed)."
+    "objectID": "02_why-style-matters.html#technical-debt",
+    "href": "02_why-style-matters.html#technical-debt",
+    "title": "Why care about code style?",
+    "section": "Technical debt",
+    "text": "Technical debt\nSome of us will recall discussing a series of papers in the R Journal about the need for software engineering best practices in R programming. The lead paper in the series cited technical debt as the cost of eschewing best practices in R code, and defined technical debt like this:\n\nCode quality is often related to technical debt. Technical Debt (TD) is a metaphor used to reflect the implied cost of additional rework caused by choosing an easy solution in the present, instead of using a better approach that would take longer (Samarthyam et al., 2017)."
   }
 ]
